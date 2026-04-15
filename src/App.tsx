@@ -1,40 +1,74 @@
-import React from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { useGetRecipes, useCreateRecipe } from './gql/hooks/recipeHooks';
 import './index.css';
 
-const App: React.FC = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  console.log("Remote App One render", location.pathname);
+function RecipeList() {
+  const { data: recipes, isPending, isError } = useGetRecipes();
+  const createRecipe = useCreateRecipe();
 
-function Home() {
-  console.log('rendering Home');
-  const navigate = useNavigate();
+  const [name, setName] = useState('');
+  const [ingredients, setIngredients] = useState('');
+  const [directions, setDirections] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    createRecipe.mutate({
+      name,
+      ingredients: ingredients.split('\n').filter(Boolean),
+      directions: directions.split('\n').filter(Boolean),
+    });
+    setName('');
+    setIngredients('');
+    setDirections('');
+  };
+
+  if (isPending) return <div>Loading...</div>;
+  if (isError) return <div>Failed to load recipes.</div>;
 
   return (
     <div>
-      <h1>Hey there! I'm the Recipes app!</h1>
-      <button onClick={() => navigate('feck')}>Feck!</button>
+      <h1>Recipes</h1>
+
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Name</label>
+          <input value={name} onChange={(e) => setName(e.target.value)} required />
+        </div>
+        <div>
+          <label>Ingredients (one per line)</label>
+          <textarea value={ingredients} onChange={(e) => setIngredients(e.target.value)} required />
+        </div>
+        <div>
+          <label>Directions (one per line)</label>
+          <textarea value={directions} onChange={(e) => setDirections(e.target.value)} required />
+        </div>
+        <button type="submit" disabled={createRecipe.isPending}>
+          {createRecipe.isPending ? 'Saving...' : 'Add Recipe'}
+        </button>
+        {createRecipe.isError && <p>Error creating recipe.</p>}
+      </form>
+
+      {recipes?.length === 0 && <p>No recipes yet.</p>}
+      <ul>
+        {recipes?.map((recipe) => (
+          <li key={recipe.id}>{recipe.name}</li>
+        ))}
+      </ul>
     </div>
   );
 }
 
-  function Feck() {
-    console.log('rendering Feck');
-    return <div>Hey there, Feck!</div>;
-  }
+function NotFound() {
+  return <div>Not found.</div>;
+}
 
-  function NotFound() {
-    console.log('rendering NotFound');
-    return <div>Error, Will Robinson!</div>;
-  }
-
+const App: React.FC = () => {
   return (
     <Routes>
-      <Route index element={<Home />} />
-      <Route path="feck" element={<Feck />} />
+      <Route index element={<RecipeList />} />
       <Route path="*" element={<NotFound />} />
-    </Routes >
+    </Routes>
   );
 }
 
