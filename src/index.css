@@ -1,1 +1,5 @@
 @import "tailwindcss" prefix(tw);
+
+body {
+  color: #f0e6ff;
+}

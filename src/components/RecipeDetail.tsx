@@ -5,7 +5,7 @@ import ListInput from './ListInput';
 import type { Recipe } from '../types/recipe';
 
 const inputCls =
-  'tw:w-full tw:border tw:border-gray-300 tw:rounded tw:px-3 tw:py-1.5 tw:text-sm tw:focus:outline-none tw:focus:ring-1 tw:focus:ring-blue-400';
+  'tw:w-full tw:border tw:border-[#BC13FE] tw:rounded tw:px-3 tw:py-1.5 tw:text-sm tw:bg-[#0d0a14] tw:text-[#f0e6ff] tw:focus:outline-none tw:focus:ring-1 tw:focus:ring-[#BC13FE]';
 
 function Section({
   label,
@@ -19,7 +19,7 @@ function Section({
   if (!show) return null;
   return (
     <div className="tw:mb-6">
-      <h2 className="tw:text-xs tw:font-semibold tw:text-gray-500 tw:uppercase tw:tracking-wide tw:mb-2">
+      <h2 className="tw:text-xs tw:font-semibold tw:text-[#c4b5fd] tw:uppercase tw:tracking-wide tw:mb-2">
         {label}
       </h2>
       {children}
@@ -43,17 +43,17 @@ function MetaField({
   if (!editing && !display) return null;
   return (
     <div>
-      <div className="tw:text-xs tw:text-gray-500 tw:mb-0.5">{label}</div>
+      <div className="tw:text-xs tw:text-[#c4b5fd] tw:mb-0.5">{label}</div>
       {editing ? (
         <input
           type="number"
           min="0"
           value={inputValue}
           onChange={(e) => onInputChange(e.target.value)}
-          className="tw:border tw:border-gray-300 tw:rounded tw:px-2 tw:py-1 tw:text-sm tw:w-24 tw:focus:outline-none tw:focus:ring-1 tw:focus:ring-blue-400"
+          className="tw:border tw:border-[#BC13FE] tw:rounded tw:px-2 tw:py-1 tw:text-sm tw:w-24 tw:bg-[#0d0a14] tw:text-[#f0e6ff] tw:focus:outline-none tw:focus:ring-1 tw:focus:ring-[#BC13FE]"
         />
       ) : (
-        <div className="tw:text-sm tw:font-medium tw:text-gray-800">{display}</div>
+        <div className="tw:text-sm tw:font-medium tw:text-[#f0e6ff]">{display}</div>
       )}
     </div>
   );
@@ -70,8 +70,8 @@ export default function RecipeDetail() {
   const [draft, setDraft] = useState<Recipe | null>(null);
   const [confirmDelete, setConfirmDelete] = useState(false);
 
-  if (isPending) return <div className="tw:p-6 tw:text-gray-500">Loading...</div>;
-  if (isError || !recipe) return <div className="tw:p-6 tw:text-red-500">Recipe not found.</div>;
+  if (isPending) return <div className="tw:p-6 tw:text-[#c4b5fd]">Loading...</div>;
+  if (isError || !recipe) return <div className="tw:p-6 tw:text-[#e22c5a]">Recipe not found.</div>;
 
   const enterEdit = () => {
     setDraft({ ...recipe });
@@ -107,7 +107,7 @@ export default function RecipeDetail() {
     <div className="tw:max-w-2xl tw:mx-auto tw:px-6 tw:pt-6 tw:pb-16">
       <button
         onClick={() => navigate('/recipes')}
-        className="tw:text-sm tw:text-blue-600 tw:hover:underline tw:mb-6 tw:inline-flex tw:items-center tw:gap-1"
+        className="tw:text-sm tw:text-[#00E5FF] tw:hover:underline tw:mb-6 tw:inline-flex tw:items-center tw:gap-1"
       >
         ← Back
       </button>
@@ -121,7 +121,7 @@ export default function RecipeDetail() {
             className={`${inputCls} tw:text-xl tw:font-bold tw:flex-1`}
           />
         ) : (
-          <h1 className="tw:text-2xl tw:font-bold tw:text-gray-900 tw:flex-1">{d.name}</h1>
+          <h1 className="tw:text-2xl tw:font-bold tw:text-[#f0e6ff] tw:flex-1">{d.name}</h1>
         )}
 
         <div className="tw:flex tw:items-center tw:gap-2 tw:shrink-0">
@@ -129,31 +129,31 @@ export default function RecipeDetail() {
             <>
               <button
                 onClick={cancelEdit}
-                className="tw:px-3 tw:py-1.5 tw:text-sm tw:border tw:border-gray-300 tw:rounded tw:hover:bg-gray-50"
+                className="tw:px-3 tw:py-1.5 tw:text-sm tw:border tw:border-[#c4b5fd] tw:text-[#c4b5fd] tw:rounded tw:hover:bg-[rgba(196,181,253,0.1)]"
               >
                 Cancel
               </button>
               <button
                 onClick={save}
                 disabled={updateRecipe.isPending}
-                className="tw:px-3 tw:py-1.5 tw:text-sm tw:bg-blue-600 tw:text-white tw:rounded tw:hover:bg-blue-700 tw:disabled:opacity-50"
+                className="tw:px-3 tw:py-1.5 tw:text-sm tw:border tw:border-[#BC13FE] tw:text-[#BC13FE] tw:rounded tw:hover:bg-[#BC13FE] tw:hover:text-white tw:disabled:opacity-50"
               >
                 {updateRecipe.isPending ? 'Saving...' : 'Save'}
               </button>
             </>
           ) : confirmDelete ? (
             <>
-              <span className="tw:text-sm tw:text-gray-600">Delete?</span>
+              <span className="tw:text-sm tw:text-[#c4b5fd]">Delete?</span>
               <button
                 onClick={handleDelete}
                 disabled={deleteRecipe.isPending}
-                className="tw:px-3 tw:py-1.5 tw:text-sm tw:bg-red-600 tw:text-white tw:rounded tw:hover:bg-red-700 tw:disabled:opacity-50"
+                className="tw:px-3 tw:py-1.5 tw:text-sm tw:bg-[#e22c5a] tw:text-white tw:rounded tw:hover:bg-[#c01848] tw:disabled:opacity-50"
               >
                 {deleteRecipe.isPending ? 'Deleting...' : 'Yes'}
               </button>
               <button
                 onClick={() => setConfirmDelete(false)}
-                className="tw:px-3 tw:py-1.5 tw:text-sm tw:border tw:border-gray-300 tw:rounded tw:hover:bg-gray-50"
+                className="tw:px-3 tw:py-1.5 tw:text-sm tw:border tw:border-[#c4b5fd] tw:text-[#c4b5fd] tw:rounded tw:hover:bg-[rgba(196,181,253,0.1)]"
               >
                 No
               </button>
@@ -162,13 +162,13 @@ export default function RecipeDetail() {
             <>
               <button
                 onClick={enterEdit}
-                className="tw:px-3 tw:py-1.5 tw:text-sm tw:border tw:border-gray-300 tw:rounded tw:hover:bg-gray-50"
+                className="tw:px-3 tw:py-1.5 tw:text-sm tw:border tw:border-[#c4b5fd] tw:text-[#c4b5fd] tw:rounded tw:hover:bg-[rgba(196,181,253,0.1)]"
               >
                 Edit
               </button>
               <button
                 onClick={() => setConfirmDelete(true)}
-                className="tw:px-3 tw:py-1.5 tw:text-sm tw:border tw:border-red-300 tw:text-red-600 tw:rounded tw:hover:bg-red-50"
+                className="tw:px-3 tw:py-1.5 tw:text-sm tw:border tw:border-[#e22c5a] tw:text-[#e22c5a] tw:rounded tw:hover:bg-[#e22c5a] tw:hover:text-white"
               >
                 Delete
               </button>
@@ -187,7 +187,7 @@ export default function RecipeDetail() {
             className={inputCls}
           />
         ) : (
-          <p className="tw:text-gray-700">{d.description}</p>
+          <p className="tw:text-[#f0e6ff]">{d.description}</p>
         )}
       </Section>
 
@@ -234,7 +234,7 @@ export default function RecipeDetail() {
             {d.tags?.map((tag) => (
               <span
                 key={tag}
-                className="tw:text-sm tw:bg-gray-100 tw:text-gray-600 tw:rounded-full tw:px-3 tw:py-1"
+                className="tw:text-sm tw:bg-[rgba(26,15,46,0.8)] tw:text-[#00E5FF] tw:border tw:border-[rgba(0,229,255,0.3)] tw:rounded-full tw:px-3 tw:py-1"
               >
                 {tag}
               </span>
@@ -254,8 +254,8 @@ export default function RecipeDetail() {
         ) : (
           <ul className="tw:space-y-1">
             {d.ingredients.map((ing, i) => (
-              <li key={i} className="tw:text-gray-700 tw:text-sm tw:flex tw:gap-2">
-                <span className="tw:text-gray-400 tw:shrink-0">·</span>
+              <li key={i} className="tw:text-[#f0e6ff] tw:text-sm tw:flex tw:gap-2">
+                <span className="tw:text-[#51CB20] tw:shrink-0">·</span>
                 {ing}
               </li>
             ))}
@@ -274,8 +274,8 @@ export default function RecipeDetail() {
         ) : (
           <ol className="tw:space-y-3">
             {d.directions.map((step, i) => (
-              <li key={i} className="tw:text-gray-700 tw:text-sm tw:flex tw:gap-3">
-                <span className="tw:text-gray-400 tw:font-medium tw:shrink-0 tw:w-5 tw:text-right">
+              <li key={i} className="tw:text-[#f0e6ff] tw:text-sm tw:flex tw:gap-3">
+                <span className="tw:text-[#00E5FF] tw:font-medium tw:shrink-0 tw:w-5 tw:text-right">
                   {i + 1}.
                 </span>
                 {step}
@@ -295,7 +295,7 @@ export default function RecipeDetail() {
             className={inputCls}
           />
         ) : (
-          <p className="tw:text-gray-700 tw:text-sm tw:whitespace-pre-wrap">{d.macros}</p>
+          <p className="tw:text-[#f0e6ff] tw:text-sm tw:whitespace-pre-wrap">{d.macros}</p>
         )}
       </Section>
 
@@ -312,7 +312,7 @@ export default function RecipeDetail() {
             href={d.imageUrl}
             target="_blank"
             rel="noreferrer"
-            className="tw:text-blue-600 tw:hover:underline tw:text-sm tw:break-all"
+            className="tw:text-[#00E5FF] tw:hover:underline tw:text-sm tw:break-all"
           >
             {d.imageUrl}
           </a>
@@ -320,7 +320,7 @@ export default function RecipeDetail() {
       </Section>
 
       {updateRecipe.isError && (
-        <p className="tw:text-red-500 tw:text-sm tw:mt-2">Failed to save changes.</p>
+        <p className="tw:text-[#e22c5a] tw:text-sm tw:mt-2">Failed to save changes.</p>
       )}
     </div>
   );

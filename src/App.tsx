@@ -15,16 +15,16 @@ function RecipeList() {
 
   const filtered = activeTag ? recipes?.filter((r) => r.tags?.includes(activeTag)) : recipes;
 
-  if (isPending) return <div className="tw:p-6 tw:text-gray-500">Loading...</div>;
-  if (isError) return <div className="tw:p-6 tw:text-red-500">Failed to load recipes.</div>;
+  if (isPending) return <div className="tw:p-6 tw:text-[#c4b5fd]">Loading...</div>;
+  if (isError) return <div className="tw:p-6 tw:text-[#e22c5a]">Failed to load recipes.</div>;
 
   return (
     <div className="tw:max-w-2xl tw:mx-auto tw:p-6">
       <div className="tw:flex tw:justify-between tw:items-center tw:mb-4">
-        <h1 className="tw:text-2xl tw:font-bold tw:text-gray-900">Recipes</h1>
+        <h1 className="tw:text-2xl tw:font-bold tw:text-[#f0e6ff]">Recipes</h1>
         <button
           onClick={() => setShowModal(true)}
-          className="tw:px-4 tw:py-2 tw:text-sm tw:bg-blue-600 tw:text-white tw:rounded tw:hover:bg-blue-700"
+          className="tw:px-4 tw:py-2 tw:text-sm tw:bg-transparent tw:border tw:border-[#00E5FF] tw:text-[#00E5FF] tw:rounded tw:hover:bg-[#00E5FF] tw:hover:text-[#0d0a14] tw:transition-colors"
         >
           New Recipe
         </button>
@@ -36,8 +36,8 @@ function RecipeList() {
             onClick={() => setActiveTag(null)}
             className={`tw:text-xs tw:rounded-full tw:px-3 tw:py-1 tw:border tw:transition-colors ${
               !activeTag
-                ? 'tw:bg-blue-600 tw:text-white tw:border-blue-600'
-                : 'tw:bg-white tw:text-gray-600 tw:border-gray-300 tw:hover:border-blue-400'
+                ? 'tw:bg-[#00E5FF] tw:text-[#0d0a14] tw:border-[#00E5FF]'
+                : 'tw:bg-transparent tw:text-[#00E5FF] tw:border-[#00E5FF] tw:hover:bg-[#00E5FF] tw:hover:text-[#0d0a14]'
             }`}
           >
             All
@@ -48,8 +48,8 @@ function RecipeList() {
               onClick={() => setActiveTag(activeTag === tag ? null : tag)}
               className={`tw:text-xs tw:rounded-full tw:px-3 tw:py-1 tw:border tw:transition-colors ${
                 activeTag === tag
-                  ? 'tw:bg-blue-600 tw:text-white tw:border-blue-600'
-                  : 'tw:bg-white tw:text-gray-600 tw:border-gray-300 tw:hover:border-blue-400'
+                  ? 'tw:bg-[#BC13FE] tw:text-white tw:border-[#BC13FE]'
+                  : 'tw:bg-transparent tw:text-[#c4b5fd] tw:border-[#BC13FE] tw:hover:border-[#BC13FE] tw:hover:text-[#f0e6ff]'
               }`}
             >
               {tag}
@@ -59,7 +59,7 @@ function RecipeList() {
       )}
 
       {filtered?.length === 0 && (
-        <p className="tw:text-gray-500 tw:text-sm">
+        <p className="tw:text-[#c4b5fd] tw:text-sm">
           {activeTag ? `No recipes tagged "${activeTag}".` : 'No recipes yet. Create one!'}
         </p>
       )}

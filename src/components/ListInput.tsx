@@ -28,13 +28,13 @@ export default function ListInput({ items, onChange, placeholder }: Props) {
       {items.map((item, i) => (
         <div
           key={i}
-          className="tw:flex tw:items-center tw:gap-2 tw:bg-gray-100 tw:rounded tw:px-3 tw:py-1.5"
+          className="tw:flex tw:items-center tw:gap-2 tw:bg-[rgba(26,15,46,0.8)] tw:rounded tw:px-3 tw:py-1.5"
         >
-          <span className="tw:flex-1 tw:text-sm tw:text-gray-800">{item}</span>
+          <span className="tw:flex-1 tw:text-sm tw:text-[#f0e6ff]">{item}</span>
           <button
             type="button"
             onClick={() => remove(i)}
-            className="tw:text-gray-400 tw:hover:text-red-500 tw:text-xs tw:leading-none"
+            className="tw:text-[#e22c5a] tw:hover:text-white tw:text-xs tw:leading-none"
           >
             ✕
           </button>
@@ -45,7 +45,7 @@ export default function ListInput({ items, onChange, placeholder }: Props) {
         type="text"
         onKeyDown={handleKeyDown}
         placeholder={placeholder ?? 'Type and press Enter to add'}
-        className="tw:border tw:border-gray-300 tw:rounded tw:px-3 tw:py-1.5 tw:text-sm tw:focus:outline-none tw:focus:ring-1 tw:focus:ring-blue-400"
+        className="tw:border tw:border-[#BC13FE] tw:rounded tw:px-3 tw:py-1.5 tw:text-sm tw:bg-[#0d0a14] tw:text-[#f0e6ff] tw:focus:outline-none tw:focus:ring-1 tw:focus:ring-[#BC13FE]"
       />
     </div>
   );
