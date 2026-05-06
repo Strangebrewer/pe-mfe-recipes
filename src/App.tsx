@@ -23,7 +23,7 @@ function RecipeList() {
     <div className="tw:max-w-2xl tw:mx-auto tw:p-6">
       <div className="tw:flex tw:justify-between tw:items-center tw:mb-4">
         <h1 className="tw:text-2xl tw:font-bold tw:text-[#f0e6ff]">Recipes</h1>
-        <Button last text="New Recipe" variant='blue' onClick={() => setShowModal(true)} />
+        <Button last text="New Recipe" color='blue' onClick={() => setShowModal(true)} />
       </div>
 
       {allTags.length > 0 && (
