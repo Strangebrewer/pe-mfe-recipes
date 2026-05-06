@@ -16,19 +16,19 @@ export default function RecipeCard({ recipe }: Props) {
   return (
     <div
       onClick={() => navigate(recipe.id)}
-      className="tw:border tw:border-[rgba(188,19,254,0.3)] tw:rounded-lg tw:p-4 tw:cursor-pointer tw:hover:border-[#BC13FE] tw:hover:bg-[rgba(188,19,254,0.08)] tw:transition-colors tw:hover:[box-shadow:0_0_10px_rgba(0,229,255,0.2)]"
+      className="tw:bg-surface tw:border tw:border-purpleBorder tw:rounded-lg tw:p-4 tw:cursor-pointer tw:hover:border-purple tw:hover:bg-purpleFaint tw:hover:shadow-[0_0_10px] tw:hover:shadow-blueBorder tw:transition-all"
     >
       <div className="tw:flex tw:items-start tw:justify-between tw:gap-4">
         <div className="tw:flex-1 tw:min-w-0">
-          <h3 className="tw:font-medium tw:text-[#f0e6ff]">{recipe.name}</h3>
+          <h3 className="tw:font-medium tw:text-primary">{recipe.name}</h3>
           {recipe.description && (
-            <p className="tw:text-sm tw:text-[#c4b5fd] tw:mt-0.5 tw:line-clamp-2">
+            <p className="tw:text-sm tw:text-muted tw:mt-0.5 tw:line-clamp-2">
               {recipe.description}
             </p>
           )}
         </div>
 
-        <div className="tw:flex tw:flex-col tw:items-end tw:gap-1 tw:shrink-0 tw:text-xs tw:text-[#c4b5fd]">
+        <div className="tw:flex tw:flex-col tw:items-end tw:gap-1 tw:shrink-0 tw:text-xs tw:text-muted">
           {totalTime != null && <span>{totalTime} min</span>}
           {totalTime == null && recipe.prepTime != null && (
             <span>Prep {recipe.prepTime} min</span>
@@ -45,7 +45,7 @@ export default function RecipeCard({ recipe }: Props) {
           {recipe.tags.map((tag) => (
             <span
               key={tag}
-              className="tw:text-xs tw:bg-[rgba(26,15,46,0.8)] tw:text-[#00E5FF] tw:border tw:border-[rgba(0,229,255,0.3)] tw:rounded-full tw:px-2 tw:py-0.5"
+              className="tw:text-xs tw:bg-surface tw:text-blue tw:border tw:border-blueBorder tw:rounded-full tw:px-2 tw:py-0.5"
             >
               {tag}
             </span>
