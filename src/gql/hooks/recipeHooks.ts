@@ -21,8 +21,8 @@ export const useGetRecipe = (id: string) => {
 export const useCreateRecipe = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (variables: Omit<Recipe, 'id'>) =>
-      gqlRequest<{ createRecipe: Recipe }>(CREATE_RECIPE, variables).then((data) => data.createRecipe),
+    mutationFn: (input: Omit<Recipe, 'id'>) =>
+      gqlRequest<{ createRecipe: Recipe }>(CREATE_RECIPE, { input }).then((data) => data.createRecipe),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['get-recipes'] }),
   });
 };
@@ -30,8 +30,8 @@ export const useCreateRecipe = () => {
 export const useUpdateRecipe = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (variables: Partial<Recipe> & { id: string }) =>
-      gqlRequest<{ updateRecipe: Recipe }>(UPDATE_RECIPE, variables).then((data) => data.updateRecipe),
+    mutationFn: ({ id, ...input }: Partial<Recipe> & { id: string }) =>
+      gqlRequest<{ updateRecipe: Recipe }>(UPDATE_RECIPE, { id, input }).then((data) => data.updateRecipe),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['get-recipes'] });
       queryClient.setQueryData(['get-recipe', data.id], data);
