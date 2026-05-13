@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import type { Recipe } from '../types/recipe';
+import { ItemCard } from '@bka-stuff/pe-mfe-utils';
 
 type Props = {
   recipe: Recipe;
@@ -9,15 +10,10 @@ export default function RecipeCard({ recipe }: Props) {
   const navigate = useNavigate();
 
   const totalTime =
-    recipe.prepTime != null && recipe.cookTime != null
-      ? recipe.prepTime + recipe.cookTime
-      : null;
+    recipe.prepTime != null && recipe.cookTime != null ? recipe.prepTime + recipe.cookTime : null;
 
   return (
-    <div
-      onClick={() => navigate(recipe.id)}
-      className="tw:bg-surface tw:border tw:border-purpleBorder tw:rounded-lg tw:p-4 tw:cursor-pointer tw:hover:border-purple tw:hover:bg-purpleFaint tw:hover:shadow-[0_0_10px] tw:hover:shadow-blueBorder tw:transition-all"
-    >
+    <ItemCard onClick={() => navigate(recipe.id)}>
       <div className="tw:flex tw:items-start tw:justify-between tw:gap-4">
         <div className="tw:flex-1 tw:min-w-0">
           <h3 className="tw:font-medium tw:text-primary">{recipe.name}</h3>
@@ -30,12 +26,8 @@ export default function RecipeCard({ recipe }: Props) {
 
         <div className="tw:flex tw:flex-col tw:items-end tw:gap-1 tw:shrink-0 tw:text-xs tw:text-muted">
           {totalTime != null && <span>{totalTime} min</span>}
-          {totalTime == null && recipe.prepTime != null && (
-            <span>Prep {recipe.prepTime} min</span>
-          )}
-          {totalTime == null && recipe.cookTime != null && (
-            <span>Cook {recipe.cookTime} min</span>
-          )}
+          {totalTime == null && recipe.prepTime != null && <span>Prep {recipe.prepTime} min</span>}
+          {totalTime == null && recipe.cookTime != null && <span>Cook {recipe.cookTime} min</span>}
           {recipe.servings != null && <span>{recipe.servings} servings</span>}
         </div>
       </div>
@@ -52,6 +44,6 @@ export default function RecipeCard({ recipe }: Props) {
           ))}
         </div>
       ) : null}
-    </div>
+    </ItemCard>
   );
 }
