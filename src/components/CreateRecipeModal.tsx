@@ -116,11 +116,7 @@ export default function CreateRecipeModal({ onClose }: Props) {
           </div>
 
           <Field label="Tags">
-            <ListInput
-              items={tags}
-              onChange={setTags}
-              placeholder="Type a tag and press Enter"
-            />
+            <ListInput items={tags} onChange={setTags} placeholder="Type a tag and press Enter" />
           </Field>
 
           <Field label="Ingredients *">

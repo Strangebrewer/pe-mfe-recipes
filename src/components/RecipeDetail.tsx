@@ -192,10 +192,7 @@ export default function RecipeDetail() {
       </Section>
 
       {/* Meta: prep / cook / servings */}
-      {(editing ||
-        d.prepTime != null ||
-        d.cookTime != null ||
-        d.servings != null) && (
+      {(editing || d.prepTime != null || d.cookTime != null || d.servings != null) && (
         <div className="tw:flex tw:gap-8 tw:mb-6">
           <MetaField
             label="Prep"

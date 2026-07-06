@@ -23,17 +23,18 @@ function RecipeList() {
     <div className="tw:max-w-2xl tw:mx-auto tw:p-6">
       <div className="tw:flex tw:justify-between tw:items-center tw:mb-4">
         <h1 className="tw:text-2xl tw:font-bold tw:text-[#f0e6ff]">Recipes</h1>
-        <Button last text="New Recipe" color='blue' onClick={() => setShowModal(true)} />
+        <Button last text="New Recipe" color="blue" onClick={() => setShowModal(true)} />
       </div>
 
       {allTags.length > 0 && (
         <div className="tw:flex tw:gap-2 tw:flex-wrap tw:mb-4">
           <button
             onClick={() => setActiveTag(null)}
-            className={`tw:text-xs tw:rounded-full tw:px-3 tw:py-1 tw:border tw:transition-colors ${!activeTag
+            className={`tw:text-xs tw:rounded-full tw:px-3 tw:py-1 tw:border tw:transition-colors ${
+              !activeTag
                 ? 'tw:bg-[#00E5FF] tw:text-[#0d0a14] tw:border-[#00E5FF]'
                 : 'tw:bg-transparent tw:text-[#00E5FF] tw:border-[#00E5FF] tw:hover:bg-[#00E5FF] tw:hover:text-[#0d0a14]'
-              }`}
+            }`}
           >
             All
           </button>
@@ -41,10 +42,11 @@ function RecipeList() {
             <button
               key={tag}
               onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-              className={`tw:text-xs tw:rounded-full tw:px-3 tw:py-1 tw:border tw:transition-colors ${activeTag === tag
+              className={`tw:text-xs tw:rounded-full tw:px-3 tw:py-1 tw:border tw:transition-colors ${
+                activeTag === tag
                   ? 'tw:bg-[#BC13FE] tw:text-white tw:border-[#BC13FE]'
                   : 'tw:bg-transparent tw:text-[#c4b5fd] tw:border-[#BC13FE] tw:hover:border-[#BC13FE] tw:hover:text-[#f0e6ff]'
-                }`}
+              }`}
             >
               {tag}
             </button>
