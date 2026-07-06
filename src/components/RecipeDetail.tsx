@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDeleteRecipe, useGetRecipe, useUpdateRecipe } from '../gql/hooks/recipeHooks';
-import ListInput from './ListInput';
 import type { Recipe } from '../types/recipe';
+import { ListInput } from '@bka-stuff/pe-mfe-utils';
 
 const inputCls =
   'tw:w-full tw:border tw:border-[#BC13FE] tw:rounded tw:px-3 tw:py-1.5 tw:text-sm tw:bg-[#0d0a14] tw:text-[#f0e6ff] tw:focus:outline-none tw:focus:ring-1 tw:focus:ring-[#BC13FE]';
