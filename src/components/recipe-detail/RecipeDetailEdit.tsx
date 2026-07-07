@@ -114,6 +114,7 @@ const RecipeDetailEdit: FC<Props> = ({ draft, exitEdit, patch }) => {
           value={draft?.macros ?? ''}
           onChange={(e) => patch({ macros: e.target.value || undefined })}
           rows={2}
+          full
         />
       </Section>
 
@@ -121,6 +122,7 @@ const RecipeDetailEdit: FC<Props> = ({ draft, exitEdit, patch }) => {
         <Input
           value={draft?.imageUrl ?? ''}
           onChange={(e) => patch({ imageUrl: e.target.value || undefined })}
+          full
         />
       </Section>
 
